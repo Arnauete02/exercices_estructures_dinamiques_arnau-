@@ -94,15 +94,15 @@ public class Krona {
                     bloqueigPantalla();
                     break;
                 case "6":
-                    //modificarCoordenadesINomDeWaypoints
+                    comprovacioRendimentTmp = Waypoint.modificarCoordenadesINomDeWaypoints(comprovacioRendimentTmp);
                     bloqueigPantalla();
                     break;
                 case "7":
-                    //visualitzarWaypointsOrdenats
+                    Waypoint.visualitzarWaypointsOrdenats(comprovacioRendimentTmp);
                     bloqueigPantalla();
                     break;
                 case "8":
-                    //waypointsACertaDistanciaMaxDeLaTerra
+                    Waypoint.waypointsACertaDistanciaMaxDeLaTerra(comprovacioRendimentTmp);
                     bloqueigPantalla();
                     break;
                 case "12":
