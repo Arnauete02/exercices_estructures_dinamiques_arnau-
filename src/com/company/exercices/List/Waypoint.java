@@ -2,10 +2,7 @@ package com.company.exercices.List;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Waypoint {
@@ -229,5 +226,102 @@ public class Waypoint {
         }
 
         return comprovacioRendimentTmp;
+    }
+
+    public static ComprovacioRendiment modificarCoordenadesINomDeWaypoints(ComprovacioRendiment comprovacioRendimentTmp){
+        Waypoint_Dades waypointTmp;
+        Scanner sc = new Scanner(System.in);
+        String newName;
+        String newCoordenades = null;
+        int position;
+        int numReadParam;
+        int[] coordenadesTmp;
+        boolean coordenadesCorrectes;
+
+        Iterator<Waypoint_Dades> waypointDadesIterator = comprovacioRendimentTmp.llistaArrayList.iterator();
+
+        while (waypointDadesIterator.hasNext()){
+            waypointTmp = waypointDadesIterator.next();
+            if (waypointTmp.getId() % 2 == 0){
+                System.out.println("------ Modificar el waypoint amb id = " + waypointTmp.getId() + " ------");
+                System.out.println("Nom actual: "+ waypointTmp.getNom());
+                System.out.println("Nom nou: ");
+                newName = sc.nextLine();
+                waypointTmp.setNom(newName);
+
+                coordenadesCorrectes = false;
+                while (coordenadesCorrectes == false){
+                    numReadParam = 0;
+                    while (numReadParam != 3){
+                        System.out.println("Coordenades actuals: " + waypointTmp.getCoordenades()[0] + " " +  waypointTmp.getCoordenades()[1] + " " + waypointTmp.getCoordenades()[2]);
+                        System.out.println("Coordenades noves (format: 1 13 7): ");
+                        newCoordenades = sc.nextLine();
+
+                        numReadParam = newCoordenades.split(" ").length;
+                        if (numReadParam != 3) {
+                            System.out.println("ERROR: introduir 3 paràmentres separats per 1 espai en blanc. Has introduit " + numReadParam + " paràmetres.");
+                        }
+                    }
+                }
+
+                position = 0;
+                coordenadesTmp = new int[] {0,0,0};
+
+                for (String coordenada : newCoordenades.split(" ")){
+                    if (Cadena.stringIsInt(coordenada)){
+                        coordenadesTmp[position] = Integer.parseInt(coordenada);
+                        position++;
+                    } else {
+                        System.out.println("ERROR: coordenada "+ coordenada +" no vàlida.");
+                    }
+                }
+
+                if (position == 3){
+                    waypointTmp.setCoordenades(coordenadesTmp);
+                    coordenadesCorrectes = true;
+                }
+            }
+            System.out.println();
+        }
+        return comprovacioRendimentTmp;
+    }
+
+    //REVISAR
+    public static void visualitzarWaypointsOrdenats(ComprovacioRendiment comprovacioRendimentTmp){
+        /*ArrayList<Waypoint_Dades> waypointDadesArrayList = new ArrayList<Waypoint_Dades>();
+
+        waypointDadesArrayList.addAll(comprovacioRendimentTmp.llistaArrayList);
+        Collections.sort(waypointDadesArrayList);
+
+        for (Waypoint_Dades waypointTmp : waypointDadesArrayList){
+            System.out.println(waypointTmp);
+        }*/
+    }
+
+    //REVISAR
+    public static void waypointsACertaDistanciaMaxDeLaTerra(ComprovacioRendiment comprovacioRendimentTmp){
+        Scanner sc = new Scanner(System.in);
+        String stringDistanciaALaTerra;
+        int intDistanciaALaTerra;
+        ArrayList<Waypoint_Dades> waypointDadesArrayList = new ArrayList<>();
+        int distancia = 0;
+
+        System.out.println("Distancia maxima de la Terra: ");
+        stringDistanciaALaTerra = sc.nextLine();
+        while (Cadena.stringIsInt(stringDistanciaALaTerra) == false){
+            System.out.println("ERROR: la distància màxima de la Terra " + stringDistanciaALaTerra + " no és correcta.");
+            System.out.println("Distancia maxima de la Terra: ");
+            stringDistanciaALaTerra = sc.nextLine();
+        }
+
+        intDistanciaALaTerra = Integer.parseInt(stringDistanciaALaTerra);
+        waypointDadesArrayList.addAll(comprovacioRendimentTmp.llistaArrayList);
+        //Collections.sort(waypointDadesArrayList);
+
+        for (Waypoint_Dades waypointTmp : waypointDadesArrayList){
+            distancia = (int)Math.pow(waypointTmp.getCoordenades()[0], 2) + (int)Math.pow(waypointTmp.getCoordenades()[1], 2) + (int)Math.pow(waypointTmp.getCoordenades()[2], 2);
+            if (distancia <= intDistanciaALaTerra) System.out.println(waypointTmp);
+            else break;
+        }
     }
 }
