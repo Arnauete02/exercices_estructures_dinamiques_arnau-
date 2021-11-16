@@ -95,16 +95,20 @@ public class Krona {
                     Waypoint.waypointsACertaDistanciaMaxDeLaTerra(comprovacioRendimentTmp);
                     bloqueigPantalla();
                     break;
+                case "10":
+                    comprovacioRendimentTmp = Ruta.inicialitzarRuta(comprovacioRendimentTmp);
+                    bloqueigPantalla();
+                    break;
+                case "11":
+                    Ruta.visualitzarRuta(comprovacioRendimentTmp);
+                    bloqueigPantalla();
+                    break;
                 case "12":
+                    Ruta.invertirRuta(comprovacioRendimentTmp);
                     bloqueigPantalla();
                     break;
                 case "13":
-                    bloqueigPantalla();
-                    break;
-                case "15":
-                    bloqueigPantalla();
-                    break;
-                case "19":
+                    Ruta.existeixWaypointEnRuta(comprovacioRendimentTmp);
                     bloqueigPantalla();
                     break;
                 case "50":
