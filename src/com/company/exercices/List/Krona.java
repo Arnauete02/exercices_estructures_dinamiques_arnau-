@@ -1,5 +1,6 @@
 package com.company.exercices.List;
 
+import java.util.Deque;
 import java.util.Scanner;
 
 public class Krona {
@@ -9,6 +10,7 @@ public class Krona {
         StringBuilder menu = new StringBuilder("");
 
         ComprovacioRendiment comprovacioRendimentTmp = null;
+        Deque<Waypoint_Dades> waypointDadesDeque = null;
 
         do {
             menu.delete(0, menu.length());
@@ -38,25 +40,13 @@ public class Krona {
             menu.append(System.getProperty("line.separator"));
             menu.append(System.getProperty("line.separator"));
 
-            menu.append("10. Carregar en la BD les rutes");
+            menu.append("10. Inicialitzar una ruta");
             menu.append(System.getProperty("line.separator"));
-            menu.append("11. Carregar en la BD les rutes carregades en memòria");
+            menu.append("11. Visualitzar una ruta");
             menu.append(System.getProperty("line.separator"));
-            menu.append("12. LListar les rutes (només amb els ID dels waypoints)");
+            menu.append("12. Invertir una ruta");
             menu.append(System.getProperty("line.separator"));
-            menu.append("13. LListar les rutes(amb tota la informació dels waypoints)");
-            menu.append(System.getProperty("line.separator"));
-            menu.append("14. LListar els waypoints d'una ruta");
-            menu.append(System.getProperty("line.separator"));
-            menu.append("15. Crear una ruta");
-            menu.append(System.getProperty("line.separator"));
-            menu.append("16. Modificar una ruta");
-            menu.append(System.getProperty("line.separator"));
-            menu.append("17. LListar les rutes que tinguin un waypoint concret");
-            menu.append(System.getProperty("line.separator"));
-            menu.append("18. Donar de baixa una ruta");
-            menu.append(System.getProperty("line.separator"));
-            menu.append("19. Esborrar de la BD una ruta");
+            menu.append("13. Existeix el waypoint 'Òrbita de Júpiter REPETIDA' en la ruta?");
             menu.append(System.getProperty("line.separator"));
             menu.append(System.getProperty("line.separator"));
 
